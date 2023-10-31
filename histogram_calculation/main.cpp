@@ -6,7 +6,7 @@ void measure_run_time(T* obj);
 
 int main(int argc, char const *argv[]){
     unsigned int max_threads = thread::hardware_concurrency();;
-    cv::Mat image = cv::imread("cpp_qs/lena_grayscale_hq.jpg", cv::IMREAD_GRAYSCALE);
+    cv::Mat image = cv::imread("./../cpp_qs/lena_grayscale_hq.jpg", cv::IMREAD_GRAYSCALE);
     SingleThreadCalculator* sc = new SingleThreadCalculator(image);
     MultiThreadCalculator* mc = new MultiThreadCalculator(max_threads, image);
     AtomicCalculator* ac = new AtomicCalculator(max_threads, image);
