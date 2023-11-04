@@ -30,6 +30,7 @@
         "fstream": "cpp",
         "mutex": "cpp",
         "sstream": "cpp",
-        "atomic": "cpp"
+        "atomic": "cpp",
+        "future": "cpp"
     }
 }
