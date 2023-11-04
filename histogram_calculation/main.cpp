@@ -1,9 +1,8 @@
 #include <iostream>
 #include "HistogramCalculators.hpp"
-using namespace std;
-template <typename T>
-void measure_run_time(T* obj);
+#include "../Report.hpp"
 
+using namespace std;
 int main(int argc, char const *argv[]){
     unsigned int max_threads = thread::hardware_concurrency();;
     cv::Mat image = cv::imread("./../cpp_qs/lena_grayscale_hq.jpg", cv::IMREAD_GRAYSCALE);
@@ -16,25 +15,5 @@ int main(int argc, char const *argv[]){
     measure_run_time<MultiThreadCalculator>(mc);
     measure_run_time<AtomicCalculator>(ac);
     measure_run_time<LockedCalculator>(lc);
-    
-    // atomic<int>* a = (*ac)();
-    // int* b = (*sc)();
-    // int* c = (*mc)();
-    // int* d = (*lc)();
-    // for (size_t i = 0; i < 256; i++){
-    //     if(a[i] != b[i] ||  a[i] != c[i] || a[i] != d[i])
-    //         cout << "FAILLURE" << endl;
-    // }
-    
     return 0;
-}
-
-template <typename T>
-void measure_run_time(T* obj){
-    auto s = chrono::high_resolution_clock::now();
-    (*obj)();
-    auto f = chrono::high_resolution_clock::now();
-    auto duration = chrono::duration_cast<chrono::microseconds>(f - s);
-    cout << (*obj).getClass() << " run time " << duration.count() << " microseconds." << endl;
-
 }
