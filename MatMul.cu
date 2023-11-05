@@ -5,7 +5,7 @@
 
 using namespace std;
 
-#define TILE_WIDTH 128
+#define TILE_WIDTH 32 // MAX THREADPERBLOCK IS 128
 
 
 __global__ void matMul(float* A, float* B, float* C, int w){
@@ -21,7 +21,7 @@ __global__ void matMul(float* A, float* B, float* C, int w){
 
 
 int main(int argc, char const *argv[]){
-    int matrix_W = 4096 * 4;
+    int matrix_W = atoi(argv[1]);
     int size = matrix_W * matrix_W; 
     float* Mat1 = new float[size]; 
     float* Mat2 = new float[size]; 
@@ -85,12 +85,12 @@ int main(int argc, char const *argv[]){
 
 
 
-    // for (size_t i = 0; i < matrix_W; i++){
-    //     for (size_t j = 0; j < matrix_W; j++){
-    //         cout << res[i* matrix_W + j] << " ";            
-    //     }
-    //     cout << endl;
-    // }
+    for (size_t i = 0; i < matrix_W; i++){
+        for (size_t j = 0; j < matrix_W; j++){
+            cout << res[i* matrix_W + j] << " ";            
+        }
+        cout << endl;
+    }
 
     return 0;
 }
